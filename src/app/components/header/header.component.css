@@ -1,0 +1,107 @@
+/* Navbar Styling */
+.main-navbar {
+    background-color: #1d3557;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* Logo */
+  .navbar-logo {
+    font-size: 1.75rem;
+    color: #fff;
+    text-decoration: none;
+    margin-right: 2rem;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .navbar-logo:hover {
+    color: black;
+  }
+  
+  /* Search Bar */
+  .navbar-search {
+    flex-grow: 1;
+    max-width: 300px;
+    margin-right: 2rem;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #a8dadc;
+    border-radius: 0.5rem;
+    background-color: #f1faee;
+    color: #1d3557;
+  }
+  
+  .search-input:focus {
+    border-color: #457b9d;
+    outline: none;
+  }
+  
+  /* Navigation Links */
+  .navbar-links {
+    display: flex;
+    gap: 1rem;
+    margin-right: auto;
+  }
+  
+  .nav-link {
+    color: #f1faee;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .nav-link:hover,
+  .active-link {
+    background-color: #457b9d;
+    color: #f1faee;
+    transform: scale(1.05);
+  }
+  
+  /* Authentication Buttons */
+  .auth-actions {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .btn-login {
+    background-color: #e63946;
+    color: #fff;
+  }
+  
+  .btn-login:hover {
+    background-color: #d62839;
+    transform: scale(1.05);
+  }
+  
+  .btn-signup {
+    background-color: #457b9d;
+    color: #fff;
+  }
+  
+  .btn-signup:hover {
+    transform: scale(1.05);
+  }
+  
