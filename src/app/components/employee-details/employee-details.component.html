@@ -1,0 +1,19 @@
+<div class="card" *ngIf="user">
+    <div class="card-header">
+        <h2>{{ user.userName }}</h2>
+    </div>
+    <div class="card-body">
+        <p><strong>ID:</strong> {{ user.id }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+
+        <div *ngIf="user.imagePath" class="image-container">
+            <img [src]="'http://localhost:5089' + user.imagePath" alt="{{ user.userName }}'s Profile Picture" class="user-image">
+        </div>
+        <p *ngIf="!user.imagePath">No image available</p>
+    </div>
+    <div class="card-footer">
+        <!-- <button routerLink="/employee-list">Back to List</button> -->
+        <button (click)="goBackToList()">Back to List</button>
+    </div>
+</div>
+<p *ngIf="!user">Loading user details...</p>

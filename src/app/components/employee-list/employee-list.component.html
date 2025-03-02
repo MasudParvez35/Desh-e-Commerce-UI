@@ -1,0 +1,13 @@
+<div class="user-container">
+  <div class="user-card" *ngFor="let user of users">
+      <h3>{{ user.userName }}</h3>
+
+      <!-- Display the user's image -->
+      <div *ngIf="user.imagePath">
+          <img [src]="'http://localhost:5089' + user.imagePath" alt="{{ user.userName }}'s Profile Picture" class="user-image">
+      </div>
+      <p *ngIf="!user.imagePath">No image available</p>
+
+      <button (click)="viewDetails(user.id)">View Details</button>
+  </div>
+</div>

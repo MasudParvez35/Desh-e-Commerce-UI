@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SignupComponent {
   signupForm: FormGroup;
+  selectedFile: File | null = null;
 
   http = inject(HttpClient);
   router = inject(Router);
@@ -22,26 +23,40 @@ export class SignupComponent {
   constructor(private fb: FormBuilder) {
     this.signupForm = this.fb.group({
       userName: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(4)]]
+      password: ['', [Validators.required, Validators.minLength(4)]],
+      imagePath: [''] 
     });
   }
 
-  onSignup() {
-    if (this.signupForm.invalid) return;
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
+  }
 
-    this.http.post("http://localhost:5089/api/Account/register", this.signupForm.value).subscribe(
+  onSignup() {
+    if (this.signupForm.invalid || !this.selectedFile) {
+      alert("Please fill all fields and upload an image!");
+      return;
+    }
+  
+    const formData = new FormData();
+    formData.append("UserName", this.signupForm.value.userName);
+    formData.append("Password", this.signupForm.value.password);
+    formData.append("Image", this.selectedFile); // Ensure key name matches backend
+  
+    this.http.post("http://localhost:5089/api/Account/register", formData, {
+      headers: { 'enctype': 'multipart/form-data' } // No 'Content-Type', let browser set it
+    }).subscribe(
       (res: any) => {
-        if (res.message === "User registered successfully!") {
-          alert("Signup Successful! Please log in.");
-          this.router.navigateByUrl('/login');
-        } else {
-          alert(res.message);
-        }
+        alert("Signup Successful! Please log in.");
+        this.router.navigateByUrl('/login');
       },
       (error) => {
         console.error("Signup error:", error);
         alert(error.error?.message);
       }
     );
-  }
+  }  
 }
